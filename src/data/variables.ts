@@ -82,83 +82,207 @@ export interface VariableDefinition {
  */
 export const variableDefinitions: Record<string, VariableDefinition> = {
     // ========================================
-    // ADD YOUR VARIABLES HERE
+    // SHARED COLOUR TERMS (prose <-> figure identity)
     // ========================================
-
-    // Uncomment and modify these examples for your lesson:
-
-    /*
-    // ─────────────────────────────────────────
-    // NUMBER - Use with sliders
-    // ─────────────────────────────────────────
-    myValue: {
-        defaultValue: 5,
-        type: 'number',
-        label: 'My Value',
-        description: 'A number that controls something',
-        unit: 'm',           // optional unit display
-        min: 0,
-        max: 10,
-        step: 0.5,
-    },
-
-    // ─────────────────────────────────────────
-    // TEXT - Free text input
-    // ─────────────────────────────────────────
-    lessonTitle: {
-        defaultValue: 'My Lesson',
+    centreAngleTerm: {
+        defaultValue: '',
         type: 'text',
-        label: 'Lesson Title',
-        description: 'The title of your lesson',
-        placeholder: 'Enter a title...',
+        label: 'Centre angle term',
+        description: 'Colour identity for the angle at the centre, used by InlineSpotColor',
+        color: '#62D0AD',
+        bgColor: 'rgba(98, 208, 173, 0.18)',
+    },
+    edgeAngleTerm: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Edge angle term',
+        description: 'Colour identity for the angle at the edge, used by InlineSpotColor',
+        color: '#8E90F5',
+        bgColor: 'rgba(142, 144, 245, 0.18)',
     },
 
-    // ─────────────────────────────────────────
-    // SELECT - Dropdown with options
-    // ─────────────────────────────────────────
-    difficulty: {
-        defaultValue: 'medium',
-        type: 'select',
-        label: 'Difficulty',
-        description: 'The difficulty level of the lesson',
-        options: ['easy', 'medium', 'hard', 'expert'],
+    // ========================================
+    // SECTION: TWO ANGLES, ONE ARC
+    // ========================================
+    arcCentreAngle: {
+        defaultValue: 120,
+        type: 'number',
+        label: 'Angle at the centre',
+        description: 'Angle AOB at the centre of the intro circle',
+        unit: '°',
+        min: 40,
+        max: 170,
+        step: 1,
+        color: '#62D0AD',
+    },
+    arcEdgePosition: {
+        defaultValue: 0.5,
+        type: 'number',
+        label: 'Edge point position',
+        description: 'Where point P sits along the major arc (0 near B, 1 near A)',
+        min: 0.08,
+        max: 0.92,
+        step: 0.01,
+        color: '#8E90F5',
+    },
+    arcViewHighlight: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Circle highlight',
+        description: "Which part of the intro circle is highlighted: '' | 'arc' | 'centre' | 'edge'",
+        color: '#64748B',
+        bgColor: 'rgba(100, 116, 139, 0.20)',
+    },
+    answerTwoAnglesEdge: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Edge angle for a 90 degree centre angle',
+        description: 'Student answer: angle at the edge when the centre angle is 90 degrees',
+        placeholder: '???',
+        correctAnswer: ['45', '45°'],
+        color: '#8E90F5',
     },
 
-    // ─────────────────────────────────────────
-    // BOOLEAN - Toggle switch
-    // ─────────────────────────────────────────
-    showHints: {
-        defaultValue: true,
+    // ========================================
+    // SECTION: ALWAYS DOUBLE, NEVER EQUAL
+    // ========================================
+    predictCentreAngle: {
+        defaultValue: 140,
+        type: 'number',
+        label: 'Angle at the centre',
+        description: 'Centre angle used in the prediction figure',
+        unit: '°',
+        min: 60,
+        max: 170,
+        step: 10,
+        color: '#62D0AD',
+    },
+    predictGuessAngle: {
+        defaultValue: 100,
+        type: 'number',
+        label: 'Your prediction',
+        description: 'The edge angle the student predicts, in degrees',
+        unit: '°',
+        min: 5,
+        max: 175,
+        step: 1,
+        color: '#F7B23B',
+    },
+    predictRevealed: {
+        defaultValue: false,
         type: 'boolean',
-        label: 'Show Hints',
-        description: 'Toggle to show or hide hints',
+        label: 'Prediction checked',
+        description: 'Whether the true edge angle has been revealed',
+    },
+    answerDoubleCentre: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Centre angle from a 75 degree edge angle',
+        description: 'Student answer: centre angle when the edge angle is 75 degrees',
+        placeholder: '???',
+        correctAnswer: ['150', '150°'],
+        color: '#62D0AD',
     },
 
-    // ─────────────────────────────────────────
-    // ARRAY - List of numbers
-    // ─────────────────────────────────────────
-    dataPoints: {
-        defaultValue: [1, 4, 9, 16, 25],
-        type: 'array',
-        label: 'Data Points',
-        description: 'Y-values for plotting a graph',
+    // ========================================
+    // SECTION: WHERE THE VERTEX SITS
+    // ========================================
+    vertexX: {
+        defaultValue: 281,
+        type: 'number',
+        label: 'Vertex x position',
+        description: 'Horizontal position of the draggable vertex, in figure units',
+        min: 100,
+        max: 420,
+        step: 1,
+        color: '#8E90F5',
+    },
+    vertexY: {
+        defaultValue: 94,
+        type: 'number',
+        label: 'Vertex y position',
+        description: 'Vertical position of the draggable vertex, in figure units',
+        min: 60,
+        max: 360,
+        step: 1,
+        color: '#8E90F5',
+    },
+    vertexViewHighlight: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Vertex figure highlight',
+        description: "Which part of the vertex figure is highlighted: '' | 'centre' | 'shortArc'",
+        color: '#64748B',
+        bgColor: 'rgba(100, 116, 139, 0.20)',
+    },
+    answerVertexRule: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Where the halving rule works',
+        description: 'Student answer: where the vertex must sit for the halving rule to hold',
+        placeholder: '???',
+        options: [
+            'anywhere inside the circle',
+            'on the edge, on the short arc between A and B',
+            'on the edge, on the long arc away from A and B',
+        ],
+        correctAnswer: 'on the edge, on the long arc away from A and B',
+        color: '#8E90F5',
     },
 
-    // ─────────────────────────────────────────
-    // OBJECT - Complex structured data
-    // ─────────────────────────────────────────
-    graphSettings: {
-        defaultValue: { 
-            xMin: -10, 
-            xMax: 10, 
-            showGrid: true 
-        },
-        type: 'object',
-        label: 'Graph Settings',
-        description: 'Configuration for the graph display',
-        schema: '{ xMin: number, xMax: number, showGrid: boolean }',
+    // ========================================
+    // SECTION: FINDING A MISSING ANGLE
+    // ========================================
+    summaryCentreAngle: {
+        defaultValue: 80,
+        type: 'number',
+        label: 'Angle at the centre',
+        description: 'Centre angle in the summary figure',
+        unit: '°',
+        min: 40,
+        max: 170,
+        step: 5,
+        color: '#62D0AD',
     },
-    */
+    summaryEdgePosition: {
+        defaultValue: 0.5,
+        type: 'number',
+        label: 'Edge point position',
+        description: 'Where point P sits along the major arc of the summary figure',
+        min: 0.08,
+        max: 0.92,
+        step: 0.01,
+        color: '#8E90F5',
+    },
+    summaryEdgeAngle: {
+        defaultValue: 40,
+        type: 'number',
+        label: 'Angle at the edge',
+        description: 'Half of the summary centre angle, kept in step by the figure',
+        unit: '°',
+        min: 20,
+        max: 85,
+        step: 1,
+        color: '#8E90F5',
+    },
+    answerPracticeEdge: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Edge angle for a 110 degree centre angle',
+        description: 'Student answer: edge angle when the centre angle is 110 degrees',
+        placeholder: '???',
+        correctAnswer: ['55', '55°'],
+        color: '#8E90F5',
+    },
+    answerPracticeCentre: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Centre angle for a 32 degree edge angle',
+        description: 'Student answer: centre angle when the edge angle is 32 degrees',
+        placeholder: '???',
+        correctAnswer: ['64', '64°'],
+        color: '#62D0AD',
+    },
 };
 
 /**

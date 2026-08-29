@@ -144,37 +144,6 @@ export const variableDefinitions: Record<string, VariableDefinition> = {
     },
 
     // ========================================
-    // SECTION: ALWAYS DOUBLE, NEVER EQUAL
-    // ========================================
-    predictCentreAngle: {
-        defaultValue: 140,
-        type: 'number',
-        label: 'Angle at the centre',
-        description: 'Centre angle used in the prediction figure',
-        unit: '°',
-        min: 60,
-        max: 170,
-        step: 10,
-        color: '#62D0AD',
-    },
-    predictGuessAngle: {
-        defaultValue: 100,
-        type: 'number',
-        label: 'Your prediction',
-        description: 'The edge angle the student predicts, in degrees',
-        unit: '°',
-        min: 5,
-        max: 175,
-        step: 1,
-        color: '#F7B23B',
-    },
-    predictRevealed: {
-        defaultValue: false,
-        type: 'boolean',
-        label: 'Prediction checked',
-        description: 'Whether the true edge angle has been revealed',
-    },
-    // ========================================
     // SECTION: WHERE THE VERTEX SITS
     // ========================================
     vertexX: {

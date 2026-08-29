@@ -7,7 +7,6 @@ import { useVariableStore, initializeVariableColors } from "@/stores";
 import { getDefaultValues, variableDefinitions } from "./variables";
 import { circleOrientBlocks } from "./sections/circleOrientSection";
 import { circleTwoAnglesBlocks } from "./sections/circleTwoAnglesSection";
-import { circleDoubleBlocks } from "./sections/circleDoubleSection";
 import { circleVertexBlocks } from "./sections/circleVertexSection";
 import { circleMissingAngleBlocks } from "./sections/circleMissingAngleSection";
 import { circleWrapUpBlocks } from "./sections/circleWrapUpSection";
@@ -93,7 +92,6 @@ initializeVariableColors(variableDefinitions);
 export const blocks: ReactElement[] = [
     ...circleOrientBlocks,
     ...circleTwoAnglesBlocks,
-    ...circleDoubleBlocks,
     ...circleVertexBlocks,
     ...circleMissingAngleBlocks,
     ...circleWrapUpBlocks,

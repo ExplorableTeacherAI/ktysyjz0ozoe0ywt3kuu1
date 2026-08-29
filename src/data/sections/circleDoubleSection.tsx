@@ -5,19 +5,13 @@ import {
     Button,
     EditableH2,
     EditableParagraph,
-    InlineClozeInput,
-    InlineFeedback,
     InlineScrubbleNumber,
     InteractionHintSequence,
 } from "@/components/atoms";
 import { Figure, FigureSlider } from "@/components/molecules";
 import { useSetVar, useVar } from "@/stores";
 import { clamp, remap } from "@/lib/motion";
-import {
-    clozePropsFromDefinition,
-    getVariableInfo,
-    numberPropsFromDefinition,
-} from "../variables";
+import { getVariableInfo, numberPropsFromDefinition } from "../variables";
 import {
     ANCHOR_A,
     AngleMark,
@@ -315,44 +309,4 @@ export const circleDoubleBlocks: ReactElement[] = [
         </Block>
     </StackLayout>,
 
-    <StackLayout key="layout-double-question" maxWidth="xl">
-        <Block id="double-question" padding="md">
-            <EditableParagraph id="para-double-question" blockId="double-question">
-                Now run it backwards. A photographer standing on the edge measures 75°
-                between the two floodlights, so the angle back at the centre must be{" "}
-                <InlineFeedback
-                    varName="answerDoubleCentre"
-                    correctValue={["150", "150°"]}
-                    position="terminal"
-                    successMessage="— yes, doubling is the way back, and 2 × 75 = 150"
-                    failureMessage="— not this time."
-                    hint="Going from the edge to the centre, the angle grows rather than shrinks"
-                    visualizationHint={{
-                        blockId: "double-figure",
-                        hintKey: "double-feedback-hint",
-                        label: "Discover it yourself",
-                        resetVars: { predictCentreAngle: 150, predictGuessAngle: 100, predictRevealed: false },
-                        steps: [
-                            {
-                                gesture: "drag-horizontal",
-                                label: "Drag the marker to 75° on the scale, then press check",
-                                position: { x: "44%", y: "69%" },
-                                dragPath: { type: "line", startOffset: { x: -34, y: 0 }, endOffset: { x: 34, y: 0 } },
-                                completionVar: "predictGuessAngle",
-                                completionValue: 75,
-                                completionTolerance: 4,
-                            },
-                        ],
-                    }}
-                >
-                    <InlineClozeInput
-                        varName="answerDoubleCentre"
-                        correctAnswer={["150", "150°"]}
-                        {...clozePropsFromDefinition(getVariableInfo("answerDoubleCentre"))}
-                    />
-                </InlineFeedback>
-                .
-            </EditableParagraph>
-        </Block>
-    </StackLayout>,
 ];

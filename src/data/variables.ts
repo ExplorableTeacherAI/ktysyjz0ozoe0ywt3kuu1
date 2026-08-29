@@ -174,16 +174,6 @@ export const variableDefinitions: Record<string, VariableDefinition> = {
         label: 'Prediction checked',
         description: 'Whether the true edge angle has been revealed',
     },
-    answerDoubleCentre: {
-        defaultValue: '',
-        type: 'text',
-        label: 'Centre angle from a 75 degree edge angle',
-        description: 'Student answer: centre angle when the edge angle is 75 degrees',
-        placeholder: '???',
-        correctAnswer: ['150', '150°'],
-        color: '#62D0AD',
-    },
-
     // ========================================
     // SECTION: WHERE THE VERTEX SITS
     // ========================================

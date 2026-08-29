@@ -161,44 +161,4 @@ export const circleMissingAngleBlocks: ReactElement[] = [
         </Block>
     </StackLayout>,
 
-    <StackLayout key="layout-missing-angle-practice-centre" maxWidth="xl">
-        <Block id="missing-angle-practice-centre" padding="md">
-            <EditableParagraph id="para-missing-angle-practice-centre" blockId="missing-angle-practice-centre">
-                In another circle, an angle at the edge measures 32°, so the angle back at
-                the centre, on the same arc, is{" "}
-                <InlineFeedback
-                    varName="answerPracticeCentre"
-                    correctValue={["64", "64°"]}
-                    position="terminal"
-                    successMessage="— yes, 2 × 32 = 64, and the centre angle is always the bigger of the two"
-                    failureMessage="— not quite."
-                    hint="Travelling inwards to the centre means doubling"
-                    visualizationHint={{
-                        blockId: "missing-angle-figure",
-                        hintKey: "practice-centre-hint",
-                        label: "Discover it yourself",
-                        resetVars: { summaryCentreAngle: 80, summaryEdgePosition: 0.5 },
-                        steps: [
-                            {
-                                gesture: "drag-circular",
-                                label: "Drag the teal point B until y reads 32°, then read x",
-                                position: { x: "58%", y: "77%" },
-                                dragPath: { type: "arc", startAngle: -40, endAngle: 40, radius: 28 },
-                                completionVar: "summaryCentreAngle",
-                                completionValue: 64,
-                                completionTolerance: 4,
-                            },
-                        ],
-                    }}
-                >
-                    <InlineClozeInput
-                        varName="answerPracticeCentre"
-                        correctAnswer={["64", "64°"]}
-                        {...clozePropsFromDefinition(getVariableInfo("answerPracticeCentre"))}
-                    />
-                </InlineFeedback>
-                .
-            </EditableParagraph>
-        </Block>
-    </StackLayout>,
 ];

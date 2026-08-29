@@ -233,15 +233,6 @@ export const variableDefinitions: Record<string, VariableDefinition> = {
         correctAnswer: ['55', '55°'],
         color: '#8E90F5',
     },
-    answerPracticeCentre: {
-        defaultValue: '',
-        type: 'text',
-        label: 'Centre angle for a 32 degree edge angle',
-        description: 'Student answer: centre angle when the edge angle is 32 degrees',
-        placeholder: '???',
-        correctAnswer: ['64', '64°'],
-        color: '#62D0AD',
-    },
 };
 
 /**

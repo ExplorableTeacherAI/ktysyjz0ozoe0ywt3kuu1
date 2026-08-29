@@ -233,6 +233,16 @@ export const variableDefinitions: Record<string, VariableDefinition> = {
         correctAnswer: ['55', '55°'],
         color: '#8E90F5',
     },
+    answerPracticeChoice: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Edge angle for a 140 degree centre angle',
+        description: 'Student answer: edge angle when the centre angle is 140 degrees',
+        placeholder: '???',
+        options: ['35°', '70°', '140°', '280°'],
+        correctAnswer: '70°',
+        color: '#8E90F5',
+    },
 };
 
 /**

@@ -4,6 +4,7 @@ import { Block } from "@/components/templates";
 import {
     EditableH2,
     EditableParagraph,
+    InlineClozeChoice,
     InlineClozeInput,
     InlineFeedback,
     InlineScrubbleNumber,
@@ -12,6 +13,7 @@ import {
 import { Figure, FigureSlider, FormulaBlock } from "@/components/molecules";
 import { useSetVar, useVar } from "@/stores";
 import {
+    choicePropsFromDefinition,
     clozePropsFromDefinition,
     getVariableInfo,
     numberPropsFromDefinition,
@@ -154,6 +156,48 @@ export const circleMissingAngleBlocks: ReactElement[] = [
                         varName="answerPracticeEdge"
                         correctAnswer={["55", "55°"]}
                         {...clozePropsFromDefinition(getVariableInfo("answerPracticeEdge"))}
+                    />
+                </InlineFeedback>
+                .
+            </EditableParagraph>
+        </Block>
+    </StackLayout>,
+
+    <StackLayout key="layout-missing-angle-practice-choice" maxWidth="xl">
+        <Block id="missing-angle-practice-choice" padding="md">
+            <EditableParagraph id="para-missing-angle-practice-choice" blockId="missing-angle-practice-choice">
+                One last one, and this time pick from the list. An angle of 140° at the
+                centre leaves the matching angle on the edge at{" "}
+                <InlineFeedback
+                    varName="answerPracticeChoice"
+                    correctValue="70°"
+                    position="terminal"
+                    successMessage="— exactly, 140 halves to 70"
+                    failureMessage="— worth another look."
+                    hint="The edge angle is always the smaller one, so halve rather than double"
+                    visualizationHint={{
+                        blockId: "missing-angle-figure",
+                        hintKey: "practice-choice-hint",
+                        label: "Discover it yourself",
+                        resetVars: { summaryCentreAngle: 80, summaryEdgePosition: 0.5 },
+                        steps: [
+                            {
+                                gesture: "drag-circular",
+                                label: "Drag the teal point B until x reads 140°, then read y",
+                                position: { x: "58%", y: "77%" },
+                                dragPath: { type: "arc", startAngle: -40, endAngle: 40, radius: 28 },
+                                completionVar: "summaryCentreAngle",
+                                completionValue: 140,
+                                completionTolerance: 4,
+                            },
+                        ],
+                    }}
+                >
+                    <InlineClozeChoice
+                        varName="answerPracticeChoice"
+                        correctAnswer="70°"
+                        options={["35°", "70°", "140°", "280°"]}
+                        {...choicePropsFromDefinition(getVariableInfo("answerPracticeChoice"))}
                     />
                 </InlineFeedback>
                 .

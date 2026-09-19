@@ -1,7 +1,8 @@
 import { type ReactElement } from "react";
 import { StackLayout } from "@/components/layouts";
 import { Block } from "@/components/templates";
-import { EditableH1, EditableParagraph } from "@/components/atoms";
+import { EditableH1, EditableParagraph, InlineSpotColor } from "@/components/atoms";
+import { getVariableInfo, spotColorPropsFromDefinition } from "../variables";
 
 export const circleOrientBlocks: ReactElement[] = [
     <StackLayout key="layout-orient-title" maxWidth="xl">
@@ -29,7 +30,15 @@ export const circleOrientBlocks: ReactElement[] = [
                 That shrink is not random, and it is not a little bit smaller either. By
                 the end of this lesson you will find a missing angle in a circle from one
                 number alone. We begin with what every circle gives us: a centre, an edge,
-                and a stretch of edge called an arc.
+                and a stretch of edge called an{" "}
+                <InlineSpotColor
+                    id="spot-orient-promise-arc"
+                    varName="arcTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("arcTerm"))}
+                >
+                    arc
+                </InlineSpotColor>
+                .
             </EditableParagraph>
         </Block>
     </StackLayout>,

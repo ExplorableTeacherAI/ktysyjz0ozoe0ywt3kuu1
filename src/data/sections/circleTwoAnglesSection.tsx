@@ -122,14 +122,37 @@ export const circleTwoAnglesBlocks: ReactElement[] = [
     <StackLayout key="layout-two-angles-insight" maxWidth="xl">
         <Block id="two-angles-insight" padding="sm">
             <EditableParagraph id="para-two-angles-insight" blockId="two-angles-insight">
-                P slides all the way along the top and the indigo reading refuses to
-                budge. With the angle at the centre sitting at{" "}
+                P slides all the way along the top and the{" "}
+                <InlineSpotColor
+                    id="spot-two-angles-insight-edge-reading"
+                    varName="edgeAngleTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("edgeAngleTerm"))}
+                >
+                    indigo reading
+                </InlineSpotColor>{" "}
+                refuses to budge. With the{" "}
+                <InlineSpotColor
+                    id="spot-two-angles-insight-centre-angle"
+                    varName="centreAngleTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("centreAngleTerm"))}
+                >
+                    angle at the centre
+                </InlineSpotColor>{" "}
+                sitting at{" "}
                 <InlineScrubbleNumber
                     varName="arcCentreAngle"
                     {...numberPropsFromDefinition(getVariableInfo("arcCentreAngle"))}
                     formatValue={formatAngle}
                 />
-                , the angle out on the edge is exactly half of it, every single time.
+                , the{" "}
+                <InlineSpotColor
+                    id="spot-two-angles-insight-edge-angle"
+                    varName="edgeAngleTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("edgeAngleTerm"))}
+                >
+                    angle out on the edge
+                </InlineSpotColor>{" "}
+                is exactly half of it, every single time.
             </EditableParagraph>
         </Block>
     </StackLayout>,
@@ -137,8 +160,23 @@ export const circleTwoAnglesBlocks: ReactElement[] = [
     <StackLayout key="layout-two-angles-question" maxWidth="xl">
         <Block id="two-angles-question" padding="md">
             <EditableParagraph id="para-two-angles-question" blockId="two-angles-question">
-                So if the angle at the centre were 90°, the angle out at the edge would
-                be{" "}
+                So if the angle at the centre were{" "}
+                <InlineSpotColor
+                    id="spot-two-angles-question-centre-value"
+                    varName="centreAngleTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("centreAngleTerm"))}
+                >
+                    90°
+                </InlineSpotColor>
+                , the{" "}
+                <InlineSpotColor
+                    id="spot-two-angles-question-edge-angle"
+                    varName="edgeAngleTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("edgeAngleTerm"))}
+                >
+                    angle out at the edge
+                </InlineSpotColor>{" "}
+                would be{" "}
                 <InlineFeedback
                     varName="answerTwoAnglesEdge"
                     correctValue={["45", "45°"]}

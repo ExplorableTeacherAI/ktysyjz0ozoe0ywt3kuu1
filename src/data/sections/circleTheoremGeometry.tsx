@@ -21,6 +21,8 @@ export const INK_STRUCTURE = "#64748B";
 export const INK_QUIET = "#CBD5E1";
 export const CENTRE_HUE = "#62D0AD";
 export const EDGE_HUE = "#8E90F5";
+/** Arc AB, the stretch of edge both angles stand on: amber in every figure. */
+export const ARC_HUE = "#F7B23B";
 export const GUESS_HUE = "#F7B23B";
 export const WARN_HUE = "#F4A89A";
 
@@ -335,12 +337,12 @@ export function TwoAngleCircleDrawing({
             {/* Arc AB — the stretch of edge both angles stand on. */}
             <g {...hoverProps("arc")} opacity={dim("arc")} style={EASE_150}>
                 {isOn("arc") && (
-                    <path d={circleArcPath(ANCHOR_A, bAngle)} fill="none" stroke={INK_STRUCTURE} strokeWidth={10} opacity={0.28} strokeLinecap="round" />
+                    <path d={circleArcPath(ANCHOR_A, bAngle)} fill="none" stroke={ARC_HUE} strokeWidth={10} opacity={0.28} strokeLinecap="round" />
                 )}
                 <path
                     d={circleArcPath(ANCHOR_A, bAngle)}
                     fill="none"
-                    stroke={INK_STRUCTURE}
+                    stroke={ARC_HUE}
                     strokeWidth={isOn("arc") ? 5 : 3.5}
                     strokeLinecap="round"
                     style={EASE_150}

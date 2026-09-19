@@ -7,6 +7,9 @@ import {
     InlineClozeChoice,
     InlineFeedback,
     InlineLinkedHighlight,
+    InlineSpotColor,
+    InlineTooltip,
+    InlineTrigger,
     InteractionHintSequence,
 } from "@/components/atoms";
 import { Figure } from "@/components/molecules";
@@ -16,9 +19,11 @@ import {
     choicePropsFromDefinition,
     getVariableInfo,
     linkedHighlightPropsFromDefinition,
+    spotColorPropsFromDefinition,
 } from "../variables";
 import {
     ANCHOR_A,
+    ARC_HUE,
     AngleMark,
     CENTRE,
     CENTRE_HUE,
@@ -137,12 +142,12 @@ function VertexDrawing() {
             {/* The short arc between A and B — the trap worth naming. */}
             <g {...hoverProps("shortArc")} opacity={dim("shortArc")} style={EASE_150}>
                 {isOn("shortArc") && (
-                    <path d={circleArcPath(ANCHOR_A, B_ANGLE)} fill="none" stroke={INK_STRUCTURE} strokeWidth={10} opacity={0.28} strokeLinecap="round" />
+                    <path d={circleArcPath(ANCHOR_A, B_ANGLE)} fill="none" stroke={ARC_HUE} strokeWidth={10} opacity={0.28} strokeLinecap="round" />
                 )}
                 <path
                     d={circleArcPath(ANCHOR_A, B_ANGLE)}
                     fill="none"
-                    stroke={INK_STRUCTURE}
+                    stroke={ARC_HUE}
                     strokeWidth={isOn("shortArc") ? 5 : 3.5}
                     strokeLinecap="round"
                     style={EASE_150}
@@ -224,6 +229,41 @@ function VertexVerdict() {
     );
 }
 
+// Named resting places for V, all on the vertical line through the centre.
+const SNAP_X = CENTRE.x;
+const SNAP_CENTRE_Y = CENTRE.y;
+const SNAP_LONG_ARC_Y = Math.round(pointOnCircle(90).y);
+const SNAP_SHORT_ARC_Y = Math.round(pointOnCircle(270).y);
+
+/** Prose trigger that snaps V to a named place; V has two coordinates, so x rides along. */
+function VertexSnapTrigger({
+    id,
+    targetY,
+    color,
+    bgColor,
+    children,
+}: {
+    id: string;
+    targetY: number;
+    color: string;
+    bgColor: string;
+    children: React.ReactNode;
+}) {
+    const setVar = useSetVar();
+    return (
+        <InlineTrigger
+            id={id}
+            varName="vertexY"
+            value={targetY}
+            color={color}
+            bgColor={bgColor}
+            onTrigger={() => setVar("vertexX", SNAP_X)}
+        >
+            {children}
+        </InlineTrigger>
+    );
+}
+
 function VertexFigure() {
     const setVar = useSetVar();
     return (
@@ -288,7 +328,7 @@ export const circleVertexBlocks: ReactElement[] = [
                     id="link-vertex-centre"
                     varName="vertexViewHighlight"
                     highlightId="centre"
-                    {...linkedHighlightPropsFromDefinition(getVariableInfo("vertexViewHighlight"))}
+                    {...linkedHighlightPropsFromDefinition(getVariableInfo("centreAngleTerm"))}
                 >
                     centre dot
                 </InlineLinkedHighlight>
@@ -306,9 +346,42 @@ export const circleVertexBlocks: ReactElement[] = [
     <StackLayout key="layout-vertex-insight" maxWidth="xl">
         <Block id="vertex-insight" padding="sm">
             <EditableParagraph id="para-vertex-insight" blockId="vertex-insight">
-                Only two places behave: the centre hands you the full angle, and the long
-                arc hands you exactly half of it. Slip onto the short arc between A and B
-                and the reading jumps to 130°, which is neither.
+                Only two places behave:{" "}
+                <VertexSnapTrigger
+                    id="trigger-vertex-insight-centre"
+                    targetY={SNAP_CENTRE_Y}
+                    color={CENTRE_HUE}
+                    bgColor="rgba(98, 208, 173, 0.18)"
+                >
+                    the centre
+                </VertexSnapTrigger>{" "}
+                hands you the full angle, and{" "}
+                <VertexSnapTrigger
+                    id="trigger-vertex-insight-long-arc"
+                    targetY={SNAP_LONG_ARC_Y}
+                    color={EDGE_HUE}
+                    bgColor="rgba(142, 144, 245, 0.18)"
+                >
+                    the long arc
+                </VertexSnapTrigger>{" "}
+                hands you exactly half of it. Slip onto{" "}
+                <VertexSnapTrigger
+                    id="trigger-vertex-insight-short-arc"
+                    targetY={SNAP_SHORT_ARC_Y}
+                    color={ARC_HUE}
+                    bgColor="rgba(247, 178, 59, 0.20)"
+                >
+                    the short arc
+                </VertexSnapTrigger>{" "}
+                between A and B and the reading jumps to{" "}
+                <InlineSpotColor
+                    id="spot-vertex-insight-off-arc-reading"
+                    varName="offArcAngleTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("offArcAngleTerm"))}
+                >
+                    130°
+                </InlineSpotColor>
+                , which is neither.
             </EditableParagraph>
         </Block>
     </StackLayout>,
@@ -316,7 +389,16 @@ export const circleVertexBlocks: ReactElement[] = [
     <StackLayout key="layout-vertex-question" maxWidth="xl">
         <Block id="vertex-question" padding="md">
             <EditableParagraph id="para-vertex-question" blockId="vertex-question">
-                So the halving only works when the corner point sits{" "}
+                So the halving only works when the{" "}
+                <InlineTooltip
+                    id="tooltip-vertex-question-corner-point"
+                    tooltip="The vertex of an angle: the point where its two arms meet. In the figure it is V."
+                    color={EDGE_HUE}
+                    bgColor="rgba(142, 144, 245, 0.18)"
+                >
+                    corner point
+                </InlineTooltip>{" "}
+                sits{" "}
                 <InlineFeedback
                     varName="answerVertexRule"
                     correctValue="on the edge, on the long arc away from A and B"

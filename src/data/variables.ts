@@ -100,6 +100,22 @@ export const variableDefinitions: Record<string, VariableDefinition> = {
         color: '#8E90F5',
         bgColor: 'rgba(142, 144, 245, 0.18)',
     },
+    arcTerm: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Arc term',
+        description: 'Colour identity for arc AB, the stretch of edge both angles stand on, used by InlineSpotColor',
+        color: '#F7B23B',
+        bgColor: 'rgba(247, 178, 59, 0.20)',
+    },
+    offArcAngleTerm: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Off-arc angle term',
+        description: 'Colour identity for the angle at V when V sits where the halving rule fails, used by InlineSpotColor',
+        color: '#F4A89A',
+        bgColor: 'rgba(244, 168, 154, 0.18)',
+    },
 
     // ========================================
     // SECTION: TWO ANGLES, ONE ARC
@@ -130,8 +146,8 @@ export const variableDefinitions: Record<string, VariableDefinition> = {
         type: 'text',
         label: 'Circle highlight',
         description: "Which part of the intro circle is highlighted: '' | 'arc' | 'centre' | 'edge'",
-        color: '#64748B',
-        bgColor: 'rgba(100, 116, 139, 0.20)',
+        color: '#F7B23B',
+        bgColor: 'rgba(247, 178, 59, 0.20)',
     },
     answerTwoAnglesEdge: {
         defaultValue: '',
@@ -171,8 +187,8 @@ export const variableDefinitions: Record<string, VariableDefinition> = {
         type: 'text',
         label: 'Vertex figure highlight',
         description: "Which part of the vertex figure is highlighted: '' | 'centre' | 'shortArc'",
-        color: '#64748B',
-        bgColor: 'rgba(100, 116, 139, 0.20)',
+        color: '#F7B23B',
+        bgColor: 'rgba(247, 178, 59, 0.20)',
     },
     answerVertexRule: {
         defaultValue: '',

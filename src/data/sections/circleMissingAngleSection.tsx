@@ -7,7 +7,9 @@ import {
     InlineClozeChoice,
     InlineClozeInput,
     InlineFeedback,
+    InlineFormula,
     InlineScrubbleNumber,
+    InlineSpotColor,
     InteractionHintSequence,
 } from "@/components/atoms";
 import { Figure, FigureSlider, FormulaBlock } from "@/components/molecules";
@@ -18,6 +20,7 @@ import {
     getVariableInfo,
     numberPropsFromDefinition,
     scrubVarsFromDefinitions,
+    spotColorPropsFromDefinition,
 } from "../variables";
 import { CENTRE_HUE, EDGE_HUE, TwoAngleCircleDrawing, formatAngle } from "./circleTheoremGeometry";
 
@@ -84,15 +87,25 @@ export const circleMissingAngleBlocks: ReactElement[] = [
     <StackLayout key="layout-missing-angle-setup" maxWidth="xl">
         <Block id="missing-angle-setup" padding="sm">
             <EditableParagraph id="para-missing-angle-setup" blockId="missing-angle-setup">
-                Strip away the stadium and the bare rule is left. Call the centre angle x
-                and the edge angle y, then drag B and watch y follow x down at half the
-                size. With x at{" "}
+                Strip away the stadium and the bare rule is left. Call the centre angle{" "}
+                <InlineFormula id="formula-missing-angle-setup-name-x" latex="\clr{centre}{x}" colorMap={{ centre: CENTRE_HUE }} />{" "}
+                and the edge angle{" "}
+                <InlineFormula id="formula-missing-angle-setup-name-y" latex="\clr{edge}{y}" colorMap={{ edge: EDGE_HUE }} />
+                , then drag B and watch{" "}
+                <InlineFormula id="formula-missing-angle-setup-follow-y" latex="\clr{edge}{y}" colorMap={{ edge: EDGE_HUE }} />{" "}
+                follow{" "}
+                <InlineFormula id="formula-missing-angle-setup-follow-x" latex="\clr{centre}{x}" colorMap={{ centre: CENTRE_HUE }} />{" "}
+                down at half the size. With{" "}
+                <InlineFormula id="formula-missing-angle-setup-value-x" latex="\clr{centre}{x}" colorMap={{ centre: CENTRE_HUE }} />{" "}
+                at{" "}
                 <InlineScrubbleNumber
                     varName="summaryCentreAngle"
                     {...numberPropsFromDefinition(getVariableInfo("summaryCentreAngle"))}
                     formatValue={formatAngle}
                 />
-                , halving gives y.
+                , halving gives{" "}
+                <InlineFormula id="formula-missing-angle-setup-result-y" latex="\clr{edge}{y}" colorMap={{ edge: EDGE_HUE }} />
+                .
             </EditableParagraph>
         </Block>
     </StackLayout>,
@@ -125,7 +138,15 @@ export const circleMissingAngleBlocks: ReactElement[] = [
     <StackLayout key="layout-missing-angle-practice-edge" maxWidth="xl">
         <Block id="missing-angle-practice-edge" padding="md">
             <EditableParagraph id="para-missing-angle-practice-edge" blockId="missing-angle-practice-edge">
-                A circle has an angle of 110° at the centre. Someone standing on the edge,
+                A circle has an angle of{" "}
+                <InlineSpotColor
+                    id="spot-missing-angle-practice-edge-centre-value"
+                    varName="centreAngleTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("centreAngleTerm"))}
+                >
+                    110°
+                </InlineSpotColor>{" "}
+                at the centre. Someone standing on the edge,
                 on the same arc, would measure{" "}
                 <InlineFeedback
                     varName="answerPracticeEdge"
@@ -166,8 +187,15 @@ export const circleMissingAngleBlocks: ReactElement[] = [
     <StackLayout key="layout-missing-angle-practice-choice" maxWidth="xl">
         <Block id="missing-angle-practice-choice" padding="md">
             <EditableParagraph id="para-missing-angle-practice-choice" blockId="missing-angle-practice-choice">
-                One last one, and this time pick from the list. An angle of 140° at the
-                centre leaves the matching angle on the edge at{" "}
+                One last one, and this time pick from the list. An angle of{" "}
+                <InlineSpotColor
+                    id="spot-missing-angle-practice-choice-centre-value"
+                    varName="centreAngleTerm"
+                    {...spotColorPropsFromDefinition(getVariableInfo("centreAngleTerm"))}
+                >
+                    140°
+                </InlineSpotColor>{" "}
+                at the centre leaves the matching angle on the edge at{" "}
                 <InlineFeedback
                     varName="answerPracticeChoice"
                     correctValue="70°"
